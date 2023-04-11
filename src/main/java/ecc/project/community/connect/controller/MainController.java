@@ -10,4 +10,10 @@ public class MainController {
     public String hello() {
         return "Hello IU! ";
     }
+
+
+    @GetMapping("/name")
+    public String getName(){
+        return "CommunityConnect";
+    }
 }
