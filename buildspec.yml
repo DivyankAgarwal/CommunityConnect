@@ -1,4 +1,5 @@
 version: 0.2
+
 phases:
   install:
     runtime-versions:
@@ -13,8 +14,21 @@ phases:
   post_build:
     commands:
       - echo "Entered in post build phase"
-#      - cp build/libs/community-connect-0.0.1-SNAPSHOT.jar ./
 artifacts:
   files:
     - build/libs/community-connect-0.0.1-SNAPSHOT.jar
 
+#version: 0.2
+#
+#phases:
+#  install:
+#    runtime-versions:
+#      java: corretto11
+#  post_build:
+#    commands:
+#      - mvn package
+#      - mv target/ROOT.war ROOT.war
+#artifacts:
+#  files:
+#    - ROOT.war
+#    - .ebextensions/**/*
