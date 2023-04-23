@@ -8,7 +8,7 @@ public class MainController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello IU! ";
+        return "Hello from Indiana University! ";
     }
 
 
