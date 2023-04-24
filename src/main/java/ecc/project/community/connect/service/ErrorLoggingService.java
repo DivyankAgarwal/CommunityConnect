@@ -11,8 +11,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ErrorLoggingService {
 
-    public void throwError(){
+
+    private LogsToCloudWatchService logsToCloudWatchService;
+
+    public void throwError() {
         System.out.println("It is error throwing method");
         log.error("Error from Service with time {} ", LocalDateTime.now());
+        logsToCloudWatchService.logMessageToCloudWatch("Hello from Spring Boot");
     }
 }
