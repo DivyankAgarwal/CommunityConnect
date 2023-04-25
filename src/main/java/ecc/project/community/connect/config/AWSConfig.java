@@ -22,14 +22,14 @@ import software.amazon.awssdk.services.sqs.SqsClient;
 @Configuration
 public class AWSConfig {
 
-//    @Value("${amazon.aws.accesskey}")
-//    private String awsAccessKey;
-//
-//    @Value("${amazon.aws.secretkey}")
-//    private String awsSecretAccessKey;
+    @Value("${amazon.aws.accesskey}")
+    private String awsAccessKey;
 
-    private String awsAccessKey = System.getenv("AWS_ACCESS_KEY_ID");
-    private String awsSecretAccessKey = System.getenv("AWS_SECRET_ACCESS_KEY");
+    @Value("${amazon.aws.secretkey}")
+    private String awsSecretAccessKey;
+
+//    private String awsAccessKey = System.getenv("AWS_ACCESS_KEY_ID");
+//    private String awsSecretAccessKey = System.getenv("AWS_SECRET_ACCESS_KEY");
 
 
 
