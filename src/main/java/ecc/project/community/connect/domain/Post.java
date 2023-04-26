@@ -26,5 +26,13 @@ public class Post {
     @JoinColumn(referencedColumnName = "id")
     private User user;
 
+    public Post(PostResource postResource, User user){
+        this.id = postResource.getId();
+        this.postText = postResource.getPostText();
+        this.timestamp = LocalDateTime.now();
+        this.priority = postResource.getPriority();
+        this.user = user;
+    }
+
 
 }
