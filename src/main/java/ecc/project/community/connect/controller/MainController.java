@@ -25,8 +25,8 @@ public class MainController {
         return "CommunityConnect";
     }
 
-    @GetMapping("/error")
-    public void throwError(){
-        errorLoggingService.throwError();
-    }
+//    @GetMapping("/error")
+//    public void throwError(){
+//        errorLoggingService.throwError();
+//    }
 }

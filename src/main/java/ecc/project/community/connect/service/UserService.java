@@ -3,6 +3,7 @@ package ecc.project.community.connect.service;
 import ecc.project.community.connect.domain.LoginObject;
 import ecc.project.community.connect.domain.User;
 import ecc.project.community.connect.domain.UserPasswordHide;
+import ecc.project.community.connect.domain.UserResource;
 import ecc.project.community.connect.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -20,19 +22,19 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    public List<UserResource> getAllUsers(){
+        return userRepository.findAll().stream().map(UserResource::new).collect(Collectors.toList());
     }
 
 
-    public UserPasswordHide registerUser(User user){
+    public UserPasswordHide registerUser(UserResource userResource){
 
-        String userEmail = user.getEmail();
+        String userEmail = userResource.getEmail();
 
         if (userRepository.findByEmail(userEmail).isPresent()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exists");
         }
-        return getUserInfoWithoutPassword(userRepository.save(user));
+        return getUserInfoWithoutPassword(userRepository.save(new User(userResource)));
 
     }
 

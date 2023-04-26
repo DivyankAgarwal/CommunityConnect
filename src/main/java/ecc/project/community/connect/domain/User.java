@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -29,5 +30,18 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Post> postLists;
+    
+
+    public User(UserResource userResource) {
+        this.id = userResource.getId();
+        this.email = userResource.getEmail();
+        this.password = userResource.getPassword();
+        this.apartmentNumber = userResource.getApartmentNumber();
+        this.username = userResource.getUsername();
+        this.postLists = userResource.getPostResourceList()
+                .stream()
+                .map(postResource -> new Post(postResource, null))
+                .collect(Collectors.toList());
+    }
 
 }

@@ -3,6 +3,7 @@ package ecc.project.community.connect.controller;
 import ecc.project.community.connect.domain.LoginObject;
 import ecc.project.community.connect.domain.User;
 import ecc.project.community.connect.domain.UserPasswordHide;
+import ecc.project.community.connect.domain.UserResource;
 import ecc.project.community.connect.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -20,13 +21,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping()
-    public List<User> getAllUsers() {
+    public List<UserResource> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping()
-    public UserPasswordHide registerUser(@Valid @RequestBody User user) {
-        return userService.registerUser(user);
+    public UserPasswordHide registerUser(@Valid @RequestBody UserResource userResource) {
+        return userService.registerUser(userResource);
     }
 
     @PostMapping("login/")

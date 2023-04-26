@@ -19,6 +19,6 @@ public class ErrorLoggingService {
     public void throwError() {
         System.out.println("It is error throwing method");
         log.error("Error from Service with time {} ", LocalDateTime.now());
-        logsToCloudWatchService.logMessageToCloudWatch(ERROR + "Hello from Spring Boot");
+        //logsToCloudWatchService.logMessageToCloudWatch(ERROR + "Hello from Spring Boot");
     }
 }
