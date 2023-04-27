@@ -41,9 +41,10 @@ public class SnsTopicService {
         System.out.println(allEmailAddress);
         String message = String.join(",",allEmailAddress);
         System.out.println("SNS Message Payload: " + message);
+        String payload = String.join(",", allEmailAddress) + "|" + highAlertPost;
         PublishResponse publishResponse;
         try{
-            PublishRequest publishRequest = PublishRequest.builder().message(allEmailAddress.toString()).topicArn(priorityPostSnsTopicArn).build();
+            PublishRequest publishRequest = PublishRequest.builder().message(payload).topicArn(priorityPostSnsTopicArn).build();
             System.out.println(publishRequest);
             publishResponse = snsClient.publish(publishRequest);
             System.out.println("SNS Message ID: " + publishResponse.messageId());
