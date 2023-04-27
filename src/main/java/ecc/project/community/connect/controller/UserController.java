@@ -40,4 +40,9 @@ public class UserController {
         return userService.getUserId(email);
     }
 
+    @GetMapping("/hello")
+    public String printHello(){
+        return "Hello World";
+    }
+
 }
