@@ -35,4 +35,9 @@ public class UserController {
         return userService.loginToSystem(loginObject);
     }
 
+    @GetMapping("/getId")
+    public Long getUserIdFromUserEmail(@Valid @RequestBody String email){
+        return userService.getUserId(email);
+    }
+
 }

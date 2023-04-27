@@ -60,4 +60,8 @@ public class UserService {
     public List<String> getAllEmailAddress(){
         return userRepository.getAllEmailAddress();
     }
+
+    public Long getUserId(String email){
+        return  userRepository.getIdFromEmail(email);
+    }
 }
