@@ -21,11 +21,11 @@ public class UserPasswordHide {
 
     private List<Post> postLists;
 
-    public UserPasswordHide(Long id, String email, String username, String apartmentNumber, List<Post> postLists) {
-        this.id = id;
-        this.email = email;
-        this.username = username;
-        this.apartmentNumber = apartmentNumber;
-        this.postLists = postLists;
+    public UserPasswordHide(User user) {
+        this.id = user.getId();
+        this.email = user.getEmail();
+        this.username = user.getUsername();
+        this.apartmentNumber = user.getApartmentNumber();
+        this.postLists = user.getPostLists();
     }
 }

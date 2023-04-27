@@ -39,19 +39,17 @@ public class UserService {
     }
 
     public UserPasswordHide getUserInfoWithoutPassword(User user){
-        return new UserPasswordHide(
-                user.getId(),
-                user.getEmail(),
-                user.getUsername(),
-                user.getApartmentNumber(),
-                user.getPostLists());
+
+        return new UserPasswordHide(user);
     }
 
-    public UserPasswordHide loginToSystem(LoginObject loginObject) {
+    public UserResource loginToSystem(LoginObject loginObject) {
         Optional<User> userObject = userRepository.findByEmail(loginObject.getEmail());
         if (userObject.isPresent()){
             if(userRepository.getPasswordByEmail(loginObject.getEmail()).equals(loginObject.getPassword())){
-                return getUserInfoWithoutPassword(userObject.get());
+                System.out.println(userObject.get().getUsername());
+//                return getUserInfoWithoutPassword(userObject.get());
+                return new UserResource(userObject.get());
             }
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email not found");
