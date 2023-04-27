@@ -17,10 +17,13 @@ public class PostResource {
 
     private LocalDateTime timestamp;
 
+    private String username;
+
     public PostResource(Post post){
         this.id = post.getId();
         this.postText = post.getPostText();
         this.priority = post.getPriority();
         this.timestamp = post.getTimestamp();
+        this.username = post.getUser().getUsername();
     }
 }

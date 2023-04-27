@@ -29,6 +29,6 @@ public class UserResource {
         this.password = user.getPassword();
         this.apartmentNumber = user.getApartmentNumber();
         this.username = user.getUsername();
-        this.postResourceList = user.getPostLists().size() > 0 ? user.getPostLists().stream().map(PostResource::new).collect(Collectors.toList()) : null;
+        this.postResourceList =  user.getPostLists().stream().map(PostResource::new).collect(Collectors.toList());
     }
 }

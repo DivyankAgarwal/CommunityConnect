@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("login/")
-    public UserResource login(@Valid @RequestBody LoginObject loginObject) {
+    public UserPasswordHide login(@Valid @RequestBody LoginObject loginObject) {
         return userService.loginToSystem(loginObject);
     }
 

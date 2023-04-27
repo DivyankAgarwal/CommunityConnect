@@ -1,9 +1,6 @@
 package ecc.project.community.connect.service;
 
-import ecc.project.community.connect.domain.LoginObject;
-import ecc.project.community.connect.domain.User;
-import ecc.project.community.connect.domain.UserPasswordHide;
-import ecc.project.community.connect.domain.UserResource;
+import ecc.project.community.connect.domain.*;
 import ecc.project.community.connect.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,17 +36,22 @@ public class UserService {
     }
 
     public UserPasswordHide getUserInfoWithoutPassword(User user){
-
-        return new UserPasswordHide(user);
+        UserPasswordHide obj = new UserPasswordHide();
+        obj.setId(user.getId());
+        obj.setEmail(user.getEmail());
+        obj.setUsername(user.getUsername());
+        obj.setPostLists(user.getPostLists().size() > 0 ? user.getPostLists().stream().map(PostResource::new).collect(Collectors.toList()) : null);
+        obj.setApartmentNumber(user.getApartmentNumber());
+        return obj;
     }
 
-    public UserResource loginToSystem(LoginObject loginObject) {
+    public UserPasswordHide loginToSystem(LoginObject loginObject) {
         Optional<User> userObject = userRepository.findByEmail(loginObject.getEmail());
         if (userObject.isPresent()){
             if(userRepository.getPasswordByEmail(loginObject.getEmail()).equals(loginObject.getPassword())){
-                System.out.println(userObject.get().getUsername());
+                System.out.println(userObject.get().getPostLists().stream().map(PostResource::new).collect(Collectors.toList()));
 //                return getUserInfoWithoutPassword(userObject.get());
-                return new UserResource(userObject.get());
+                return getUserInfoWithoutPassword(userObject.get());
             }
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email not found");
