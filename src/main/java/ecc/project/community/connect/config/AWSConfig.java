@@ -1,24 +1,19 @@
 package ecc.project.community.connect.config;
 
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.logs.AWSLogs;
-import com.amazonaws.services.logs.AWSLogsAsyncClientBuilder;
 import com.amazonaws.services.logs.AWSLogsClientBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
-import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cloudwatchlogs.CloudWatchLogsClient;
+import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sqs.SqsClient;
 
 
@@ -73,6 +68,18 @@ public class AWSConfig {
 
     }
 
+    @Bean
+    public SnsClient snsClient() {
+        return SnsClient.builder().region(Region.of(awsRegion)).credentialsProvider(getCredentialsProvider()).build();
+    }
+
+//    @Bean
+//    public SnsClient snsClient() {
+//        var credentials = AwsBasicCredentials.create(awsAccessKey, awsSecretKey);
+//        return SnsClient.builder()
+//                .region(Region.of(awsRegion))
+//                .credentialsProvider(StaticCredentialsProvider.create(credentials)).build();
+//    }
 
 }
 

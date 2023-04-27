@@ -56,4 +56,8 @@ public class UserService {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Email not found");
     }
+
+    public List<String> getAllEmailAddress(){
+        return userRepository.getAllEmailAddress();
+    }
 }

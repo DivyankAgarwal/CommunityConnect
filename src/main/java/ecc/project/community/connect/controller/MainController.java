@@ -1,10 +1,11 @@
 package ecc.project.community.connect.controller;
 
 import ecc.project.community.connect.service.ErrorLoggingService;
+import ecc.project.community.connect.service.SnsTopicService;
+import ecc.project.community.connect.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,6 +15,10 @@ public class MainController {
 
     private final ErrorLoggingService errorLoggingService;
 
+    private final SnsTopicService snsTopicService;
+
+    private final UserService userService;
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello from Indiana University! ";
@@ -22,6 +27,8 @@ public class MainController {
 
     @GetMapping("/name")
     public String getName(){
+        snsTopicService.listSNSTopics();
+        System.out.println(userService.getAllEmailAddress());
         return "CommunityConnect";
     }
 

@@ -21,11 +21,19 @@ public class PostService {
     private PostRepository postRepository;
     private UserRepository userRepository;
 
+    private SnsTopicService snsTopicService;
+
+    private UserService userService;
+
     public PostResource saveNewPost(PostResource postResource, Long userId){
         var user = userRepository.findById(userId);
         if (user.isPresent()){
             var newPost = new Post(postResource, user.get());
-            postRepository.save(newPost);
+            if (newPost.getPriority().equals(Boolean.TRUE)){
+                System.out.println("High Alert. Sending immediate notification to every user.");
+                snsTopicService.sendSnsNotificationToLambda(userService.getAllEmailAddress());
+            }
+            //postRepository.save(newPost);
             return new PostResource(newPost);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User id not found while creating post");
