@@ -31,9 +31,9 @@ public class PostService {
             var newPost = new Post(postResource, user.get());
             if (newPost.getPriority().equals(Boolean.TRUE)){
                 System.out.println("High Alert. Sending immediate notification to every user.");
-                snsTopicService.sendSnsNotificationToLambda(userService.getAllEmailAddress());
+                snsTopicService.sendSnsNotificationToLambda(userService.getAllEmailAddress(), postResource.getPostText());
             }
-            //postRepository.save(newPost);
+            postRepository.save(newPost);
             return new PostResource(newPost);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User id not found while creating post");

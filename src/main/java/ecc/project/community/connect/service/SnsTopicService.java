@@ -37,7 +37,7 @@ public class SnsTopicService {
         }
     }
 
-    public boolean sendSnsNotificationToLambda(List<String> allEmailAddress){
+    public boolean sendSnsNotificationToLambda(List<String> allEmailAddress, String highAlertPost){
         System.out.println(allEmailAddress);
         String message = String.join(",",allEmailAddress);
         System.out.println("SNS Message Payload: " + message);
