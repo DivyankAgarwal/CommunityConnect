@@ -3,6 +3,8 @@
 The Community Connect App is a cloud-based platform that utilizes AWS services to facilitate seamless communication and engagement between neighbors. The app provides a centralized hub for neighbors to come together and share information about local events, services, and anything else that they believe would be beneficial to their community. With the ability to set post priority and trigger email notifications for high-priority posts, residents stay informed. The AWS pipeline automates the deployment of new code releases from GitHub, ensuring a smooth and hassle-free developer and user experience.
 
 ## Architecture
+![CommunityConnectArch](https://github.com/DivyankAgarwal/CommunityConnect/blob/main/ecc_architecture.drawio.png)
+
 
 The above diagram shows the architecture of the backend system and how it connects and communicates through various AWS services. Security is a key factor in the cloud environment. To ensure security, a specific IAM user is created for the application itself to access various AWS services. Only the specific required policies are attached to the user, such as SNS policy and RDS policy, so that it can access only those services.
 
